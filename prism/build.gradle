@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'blockcanaryex'
+//apply plugin: 'blockcanaryex'
 
 android {
     compileSdkVersion 26
@@ -32,7 +32,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // BlockCanary
     debugCompile 'com.letv.sarrsdesktop:BlockCanaryExJRT:0.9.9.4'
     releaseCompile 'com.letv.sarrsdesktop:BlockCanaryExJRTNoOp:0.9.9.4'
     testCompile 'com.letv.sarrsdesktop:BlockCanaryExJRTNoOp:0.9.9.4'
+    // leakcanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
+
 }

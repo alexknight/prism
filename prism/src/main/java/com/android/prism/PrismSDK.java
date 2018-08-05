@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.android.prism.crash.Cockroach;
 import com.android.prism.crash.CrashHandler;
+import com.android.prism.utils.AppUtils;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -19,6 +20,7 @@ public class PrismSDK {
     private PrismSDK (Context context){
         this.context = context;
         mPerformance = new Performance(context);
+        AppUtils.getInstance().setAppContext(context);
     }
 
     public static PrismSDK getInstance(Context context) {

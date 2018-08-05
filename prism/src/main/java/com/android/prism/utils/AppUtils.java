@@ -11,6 +11,29 @@ import java.util.List;
 
 public class AppUtils {
 
+    private volatile static AppUtils appUtils;
+    private Context appContext;
+
+    private AppUtils (){
+    }
+
+    public static AppUtils getInstance() {
+        if (appUtils == null) {
+            synchronized (AppUtils.class) {
+                if (appUtils == null) {
+                    appUtils = new AppUtils();
+                }
+            }
+        }
+        return appUtils;
+    }
+
+    public void setAppContext(Context appContext) {
+        this.appContext = appContext;
+    }
+    public Context getAppContext(){
+        return appContext;
+    }
     /**
      * 判断APP是否为前台应用
      * @return
@@ -31,4 +54,5 @@ public class AppUtils {
         }
         return false;
     }
+
 }
