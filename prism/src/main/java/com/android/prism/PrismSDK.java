@@ -35,12 +35,15 @@ public class PrismSDK {
     }
 
 
+    /**
+     * mPerformance：开启内存，CPU，帧率监控（在looper线程中干货）->只起了两个线程looper，一个定时任务到期，
+     *              会通知各个observer更新，observer则sendMessage，等待MoitorThread的统一处理
+     */
     public void start() {
         // crash处理<->ui线程looper中
         Cockroach.install(new CrashHandler(this.context));
         // 内存泄漏
         LeakCanary.install((Application) this.context);
-        // 开启内存，CPU，帧率监控
         mPerformance.start();
     }
 

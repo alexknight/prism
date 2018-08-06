@@ -1,8 +1,11 @@
 package com.android.prism.observers;
 import android.os.Message;
 
+import com.android.prism.bean.MemInfo;
 import com.android.prism.constants.MonitorType;
 import com.android.prism.subjects.MonitorManager;
+import com.android.prism.utils.AppUtils;
+import com.android.prism.utils.MemUtils;
 
 
 /**
@@ -14,6 +17,7 @@ import com.android.prism.subjects.MonitorManager;
 
 
 public class MemObserver extends MonitorObserver {
+
 
     public MemObserver(MonitorManager monitorManager){
         this.monitorManager = monitorManager;
@@ -27,6 +31,11 @@ public class MemObserver extends MonitorObserver {
     public void update() {
         Message msg = Message.obtain();
         msg.what = MonitorType.MONITOR_MSG_TYPE_MEM;
+        MemInfo memInfo = new MemInfo();
+        memInfo.setTimestamp(AppUtils.getCurrentTime());
+        memInfo.setTotalMemory(MemUtils.getTotalMemory());
+        memInfo.setProcessUsedMemory(MemUtils.getUseSize());
+        msg.obj = memInfo;
         monitorManager.monitorHandler.sendMessage(msg);
     }
 
