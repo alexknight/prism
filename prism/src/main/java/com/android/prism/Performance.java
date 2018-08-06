@@ -37,8 +37,6 @@ class Performance {
         new TimerThread("TimerThread", monitorHandler, 0, MonitorType.MONITOR_HIGH_RATE).start();
     }
 
-
-
     void stop() {
         monitorManager.setState(0);
     }
