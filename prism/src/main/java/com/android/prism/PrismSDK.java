@@ -9,7 +9,9 @@ import com.android.prism.utils.AppUtils;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
- * Created by qingge on 2018/8/4.
+ * Project: PrismSDK
+ * @date : 2018/8/4 下午11:42
+ * @author : Alex(qingge)
  */
 
 public class PrismSDK {
@@ -20,7 +22,7 @@ public class PrismSDK {
     private PrismSDK (Context context){
         this.context = context;
         mPerformance = new Performance(context);
-        AppUtils.getInstance().setAppContext(context);
+        AppUtils.getInstance().setAppContext(context).setPid(android.os.Process.myPid());
     }
 
     public static PrismSDK getInstance(Context context) {

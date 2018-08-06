@@ -10,13 +10,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by qingge on 2018/8/4.
+ * Project: PrismSDK
+ * @date : 2018/8/4 下午11:42
+ * @author : Alex(qingge)
  */
 
 public class AppUtils {
 
     private volatile static AppUtils appUtils;
     private Context appContext;
+    private int pid;
 
     private AppUtils (){
     }
@@ -32,13 +35,25 @@ public class AppUtils {
         return appUtils;
     }
 
-    public void setAppContext(Context appContext) {
+    public AppUtils setAppContext(Context appContext) {
         this.appContext = appContext;
+        return this;
     }
 
     public Context getAppContext(){
         return appContext;
     }
+
+    public int getPid() {
+        return pid;
+    }
+
+    public AppUtils setPid(int pid) {
+        this.pid = pid;
+        return this;
+    }
+
+
 
     /**
      * 判断APP是否为前台应用
@@ -78,5 +93,6 @@ public class AppUtils {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return simpleDateFormat.format(new Date());
     }
+
 
 }

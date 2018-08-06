@@ -2,6 +2,8 @@ package com.android.prism.subjects;
 
 import android.os.Handler;
 
+import com.android.prism.constants.MonitorType;
+import com.android.prism.constants.Stats;
 import com.android.prism.observers.MonitorObserver;
 
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ public class MonitorManager {
 
     public void setState(int state) {
         this.state = state;
-        if (this.state == 1){
+        if (this.state == 1 && Stats.MONITOR_START){
             notifyAllObservers();
         }
 
