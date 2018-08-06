@@ -32,9 +32,9 @@ class Performance {
         new MemObserver(monitorManager);
         new CpuObserver(monitorManager);
         // 性能handleMessage线程
-        new MonitorThread("MonitorThread", monitorHandler,0).start();
+        new MonitorThread("MonitorThread",0).start();
         // 性能sendMessage线程
-        new TimerThread("TimerThread", monitorHandler, 0, MonitorType.MONITOR_HIGH_RATE).start();
+        new TimerThread("TimerThread", 0, MonitorType.MONITOR_HIGH_RATE).start();
     }
 
     void stop() {

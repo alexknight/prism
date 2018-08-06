@@ -54,10 +54,6 @@ public class MonitorManager {
         monitorObservers.add(observer);
     }
 
-
-    /**
-     * TODO: 后续改成消息模式，通过往looper中塞消息，来执行采集（按线程）
-     */
     public void notifyAllObservers(){
         for (MonitorObserver observer : monitorObservers) {
             observer.update();

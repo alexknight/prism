@@ -19,25 +19,21 @@ import com.android.prism.utils.MemUtils;
 
 public class TimerThread extends HandlerThread {
 
-    private Handler mHandler;
     private float mInterval;
 
-    public TimerThread(String name, Handler handler, float interval) {
+    public TimerThread(String name,  float interval) {
         super(name);
-        this.mHandler = handler;
         this.mInterval = interval;
     }
 
-    public TimerThread(String name, Handler handler, int priority, float interval) {
+    public TimerThread(String name, int priority, float interval) {
         super(name, priority);
-        this.mHandler = handler;
         this.mInterval = interval;
     }
 
     @Override
     protected void onLooperPrepared() {
         super.onLooperPrepared();
-        Looper looper = this.getLooper();
         try {
             Thread.sleep((long) this.mInterval);
             // 开始模块驱动性能消息更新

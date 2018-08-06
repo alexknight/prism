@@ -18,22 +18,23 @@ import com.android.prism.utils.MemUtils;
 
 public class MonitorThread extends HandlerThread {
 
-    private Handler handler;
 
-    public MonitorThread(String name, Handler handler) {
+    public MonitorThread(String name) {
         super(name);
-        this.handler = handler;
     }
 
-    public MonitorThread(String name, Handler handler, int priority) {
+    public MonitorThread(String name, int priority) {
         super(name, priority);
-        this.handler = handler;
     }
 
+    /**
+     * TODO: 需要在这里做跟TimerThread的消息同步，不然handleMessage无效
+     */
+    @Override
     protected void onLooperPrepared() {
         super.onLooperPrepared();
         Looper looper = this.getLooper();
-        handler = new Handler(looper){
+        new Handler(looper){
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what){
