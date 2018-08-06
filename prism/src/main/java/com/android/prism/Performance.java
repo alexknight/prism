@@ -68,7 +68,7 @@ public class Performance implements Application.ActivityLifecycleCallbacks{
         if (mStart) {
             return;
         }
-        if (AppUtils.getInstance().isForegroundApp(mContext)  && !mIsForeground){
+        if (AppUtils.isForegroundApp(mContext)  && !mIsForeground){
             mIsForeground = true;
             Stats.MONITOR_START = true;
         }
