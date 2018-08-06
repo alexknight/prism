@@ -1,12 +1,8 @@
 package com.android.prism.subjects;
 
-import android.util.Log;
-import android.widget.Toast;
+import android.os.Handler;
 
-import com.android.prism.constants.MonitorType;
 import com.android.prism.observers.MonitorObserver;
-import com.android.prism.utils.AppUtils;
-import com.android.prism.utils.MemUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +16,27 @@ import java.util.List;
 
 
 public class MonitorManager {
+    public Handler monitorHandler;
     private List<MonitorObserver> monitorObservers = new ArrayList<MonitorObserver>();
-    private int state;
+    private int state = 0;
+
+    private volatile static MonitorManager monitorManager;
+    private MonitorManager (){}
+    public static MonitorManager getInstance() {
+        if (monitorManager == null) {
+            synchronized (MonitorManager.class) {
+                if (monitorManager == null) {
+                    monitorManager = new MonitorManager();
+                }
+            }
+        }
+        return monitorManager;
+    }
+
+    public MonitorManager setMonitorHandler(Handler monitorHandler) {
+        this.monitorHandler = monitorHandler;
+        return this;
+    }
 
     public int getState() {
         return state;
@@ -29,7 +44,10 @@ public class MonitorManager {
 
     public void setState(int state) {
         this.state = state;
-        notifyAllObservers();
+        if (this.state == 1){
+            notifyAllObservers();
+        }
+
     }
 
     public void attach(MonitorObserver observer){

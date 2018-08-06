@@ -13,9 +13,9 @@ import com.android.prism.subjects.MonitorManager;
  */
 
 
-public class MemObserver extends MonitorObserver {
+public class CpuObserver extends MonitorObserver {
 
-    public MemObserver(MonitorManager monitorManager){
+    public CpuObserver(MonitorManager monitorManager){
         this.monitorManager = monitorManager;
         this.monitorManager.attach(this);
     }
@@ -26,7 +26,7 @@ public class MemObserver extends MonitorObserver {
     @Override
     public void update() {
         Message msg = Message.obtain();
-        msg.what = MonitorType.MONITOR_MSG_TYPE_MEM;
+        msg.what = MonitorType.MONITOR_MSG_TYPE_CPU;
         monitorManager.monitorHandler.sendMessage(msg);
     }
 
