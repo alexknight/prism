@@ -1,6 +1,8 @@
 package com.android.prism.tasks;
 
 import android.os.HandlerThread;
+
+import com.android.prism.constants.Stats;
 import com.android.prism.subjects.MonitorManager;
 
 /**
@@ -30,12 +32,15 @@ public class TimerThread extends HandlerThread {
     @Override
     protected void onLooperPrepared() {
         super.onLooperPrepared();
-        try {
-            Thread.sleep((long) this.mInterval);
-            // 开始模块驱动性能消息更新
-            MonitorManager.getInstance().setState(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while(Stats.MONITOR_START){
+            try {
+                Thread.sleep((long) this.mInterval);
+                // 开始模块驱动性能消息更新
+                MonitorManager.getInstance().setState(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 }

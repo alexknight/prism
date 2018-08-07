@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import com.android.prism.constants.MonitorType;
 import com.android.prism.constants.Stats;
@@ -14,6 +15,7 @@ import com.android.prism.subjects.MonitorManager;
 import com.android.prism.tasks.MonitorThread;
 import com.android.prism.tasks.TimerThread;
 import com.android.prism.utils.AppUtils;
+
 
 
 /**
@@ -30,6 +32,7 @@ public class Performance implements Application.ActivityLifecycleCallbacks{
     private MonitorManager monitorManager;
     private boolean mStart;
     private boolean mIsForeground;//APP是否位于前台
+    private String TAG = "Performance";
 
     Performance(Context context) {
         this.mContext = context;
@@ -44,7 +47,10 @@ public class Performance implements Application.ActivityLifecycleCallbacks{
         // 性能handleMessage线程
         new MonitorThread("MonitorThread",0).start();
         // 性能sendMessage线程
-        new TimerThread("TimerThread", 0, MonitorType.MONITOR_HIGH_RATE).start();
+        new TimerThread("TimerThread",MonitorType.MONITOR_HIGH_RATE).start();
+        if (mContext instanceof Application) {
+            ((Application) mContext).registerActivityLifecycleCallbacks(this);
+        }
     }
 
     void stop() {
@@ -55,7 +61,7 @@ public class Performance implements Application.ActivityLifecycleCallbacks{
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
+        Log.d(TAG, "onActivityCreated: ");
     }
 
     @Override
@@ -86,11 +92,11 @@ public class Performance implements Application.ActivityLifecycleCallbacks{
 
     @Override
     public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
+        Log.d(TAG, "onActivitySaveInstanceState: ");
     }
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-
+        Log.d(TAG, "onActivityDestroyed: ");
     }
 }
