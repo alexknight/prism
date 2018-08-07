@@ -40,7 +40,7 @@ public class MemObserver extends MonitorObserver {
         Message msg = Message.obtain();
         msg.what = MonitorType.MONITOR_MSG_TYPE_MEM;
         msg.obj = memInfo;
-        monitorManager.monitorHandler.sendMessage(msg);
+        monitorManager.sMonitorHandler.sendMessage(msg);
     }
 
 }

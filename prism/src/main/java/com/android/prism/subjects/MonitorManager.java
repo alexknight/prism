@@ -18,7 +18,7 @@ import java.util.List;
 
 
 public class MonitorManager {
-    public Handler monitorHandler;
+    public Handler sMonitorHandler;
     private List<MonitorObserver> monitorObservers = new ArrayList<MonitorObserver>();
     private int state = 0;
 
@@ -36,7 +36,7 @@ public class MonitorManager {
     }
 
     public MonitorManager setMonitorHandler(Handler monitorHandler) {
-        this.monitorHandler = monitorHandler;
+        this.sMonitorHandler = monitorHandler;
         return this;
     }
 

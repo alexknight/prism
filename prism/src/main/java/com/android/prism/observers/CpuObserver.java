@@ -37,7 +37,7 @@ public class CpuObserver extends MonitorObserver {
         Message msg = Message.obtain();
         msg.obj = cpuInfo;
         msg.what = MonitorType.MONITOR_MSG_TYPE_CPU;
-        monitorManager.monitorHandler.sendMessage(msg);
+        monitorManager.sMonitorHandler.sendMessage(msg);
     }
 
 }

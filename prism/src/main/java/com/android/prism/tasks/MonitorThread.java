@@ -7,6 +7,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.android.prism.constants.MonitorType;
+import com.android.prism.subjects.MonitorManager;
 import com.android.prism.utils.MemUtils;
 
 /**
@@ -34,7 +35,7 @@ public class MonitorThread extends HandlerThread {
     protected void onLooperPrepared() {
         super.onLooperPrepared();
         Looper looper = this.getLooper();
-        new Handler(looper){
+        MonitorManager.getInstance().sMonitorHandler = new Handler(looper){
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what){
