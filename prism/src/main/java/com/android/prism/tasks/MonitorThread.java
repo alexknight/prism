@@ -1,5 +1,6 @@
 package com.android.prism.tasks;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -29,18 +30,18 @@ public class MonitorThread extends HandlerThread {
     }
 
     /**
-     * TODO: 需要在这里做跟TimerThread的消息同步，不然handleMessage无效
+     * TODO: bugfix-只收到一次消息
      */
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onLooperPrepared() {
-        super.onLooperPrepared();
-        Looper looper = this.getLooper();
-        MonitorManager.getInstance().sMonitorHandler = new Handler(looper){
+        MonitorManager.getInstance().sMonitorHandler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what){
                     case MonitorType.MONITOR_MSG_TYPE_MEM:
                         Log.d(MonitorType.MONITOR_PERFORMANCE, "handleMessage: " + MemUtils.getUseSize());
+                        break;
                 }
             }
         };

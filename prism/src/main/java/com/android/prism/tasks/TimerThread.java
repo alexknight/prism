@@ -24,6 +24,9 @@ public class TimerThread extends HandlerThread {
         this.mInterval = interval;
     }
 
+    /**
+     * TODO: bugfix-只收到一次消息
+     */
     @Override
     protected void onLooperPrepared() {
         super.onLooperPrepared();
