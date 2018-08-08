@@ -17,12 +17,14 @@ import java.io.RandomAccessFile;
 public class CpuUtils {
 
     public static int getCpuRate(int pid){
+        int cpuRateInt = -1;
+        if (!RootUtil.isRooted()){
+            return cpuRateInt;
+        }
         long mLastCpuTime = 0;//当前手机的CPU总时间
         long mLastAppTime = 0;//当前app的CPU耗时
         RandomAccessFile procStatFile = null;
         RandomAccessFile appStatFile = null;
-        int cpuRateInt = -1;
-
         try {
             procStatFile = new RandomAccessFile("/proc/stat", "r");
             appStatFile = new RandomAccessFile("/proc/" + pid + "/stat", "r");

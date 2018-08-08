@@ -26,6 +26,7 @@ public class CpuObserver extends MonitorObserver {
 
     /**
      * 开始采集数据
+     * TODO: 非Root手机采集不到CPU信息
      */
     @Override
     public void update() {
