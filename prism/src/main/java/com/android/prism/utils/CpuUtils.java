@@ -1,7 +1,5 @@
 package com.android.prism.utils;
 
-import android.util.Log;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;

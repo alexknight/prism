@@ -5,7 +5,6 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
 import com.android.prism.constants.MonitorType;
 import com.android.prism.constants.Stats;
@@ -31,13 +30,21 @@ public class Performance implements Application.ActivityLifecycleCallbacks{
     private Handler monitorHandler;
     private MonitorManager monitorManager;
     private String TAG = "Performance";
+    public Env env;
 
     Performance(Context context) {
         this.mContext = context;
         this.monitorManager = MonitorManager.getInstance().setMonitorHandler(monitorHandler);
     }
 
+    void init(){
+        long time = System.currentTimeMillis();
+        env = new Env.Builder().setAppStartTime(time).setBootActivity(AppUtils.getLauncherActivity(this.mContext)).build();
+    }
+
     void start() {
+
+        init();
         new MemObserver(monitorManager);
         new CpuObserver(monitorManager);
         // 性能handleMessage线程

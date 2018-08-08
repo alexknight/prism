@@ -2,6 +2,9 @@ package com.android.prism.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ResolveInfo;
+import android.text.TextUtils;
 
 import com.android.prism.bean.StackInfo;
 
@@ -94,5 +97,23 @@ public class AppUtils {
         return simpleDateFormat.format(new Date());
     }
 
+    public static String getLauncherActivity(Context context) {
+        Intent intent = new Intent(Intent.ACTION_MAIN, null);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
 
+        List<ResolveInfo> packageInfos = context.getPackageManager().queryIntentActivities(intent, 0);
+        if (packageInfos == null || packageInfos.isEmpty()) {
+            return null;
+        }
+
+        for (int i = 0; i < packageInfos.size(); i++) {
+            String launcherActivityName = packageInfos.get(i).activityInfo.name;
+            String launcherPackageName = packageInfos.get(i).activityInfo.packageName;
+            if (!TextUtils.isEmpty(launcherPackageName) && launcherPackageName.equals(context.getPackageName())) {
+                return launcherActivityName;
+            }
+        }
+
+        return null;
+    }
 }
