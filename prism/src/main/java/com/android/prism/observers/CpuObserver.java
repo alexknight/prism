@@ -21,7 +21,7 @@ public class CpuObserver extends MonitorObserver {
 
     public CpuObserver(MonitorManager monitorManager){
         this.monitorManager = monitorManager;
-        this.monitorManager.attach(this);
+        this.monitorManager.register(this);
     }
 
     /**

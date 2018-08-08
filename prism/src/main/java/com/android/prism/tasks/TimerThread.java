@@ -26,21 +26,23 @@ public class TimerThread extends HandlerThread {
         this.mInterval = interval;
     }
 
-    /**
-     * TODO: bugfix-只收到一次消息
-     */
+
     @Override
     protected void onLooperPrepared() {
         super.onLooperPrepared();
-        while(Stats.MONITOR_START){
+    }
+
+    @Override
+    public void run(){
+        while (true){
+            if (Stats.PERFORMACE_START){
+                MonitorManager.getInstance().updateObservers();
+            }
             try {
                 Thread.sleep((long) this.mInterval);
-                // 开始模块驱动性能消息更新
-                MonitorManager.getInstance().setState(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-
     }
 }

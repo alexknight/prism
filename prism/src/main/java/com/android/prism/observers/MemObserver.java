@@ -19,15 +19,13 @@ import com.android.prism.utils.MemUtils;
 
 public class MemObserver extends MonitorObserver {
 
-
     public MemObserver(MonitorManager monitorManager){
         this.monitorManager = monitorManager;
-        this.monitorManager.attach(this);
+        this.monitorManager.register(this);
     }
 
     /**
-     * 开始采集数据
-     * TODO:新增一个条件判断，当在Activity对应生命周期下，数据采集才开启
+     * 开始采集内存数据
      */
     @Override
     public void update() {

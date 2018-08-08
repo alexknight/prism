@@ -2,7 +2,6 @@ package com.android.prism.subjects;
 
 import android.os.Handler;
 
-import com.android.prism.constants.MonitorType;
 import com.android.prism.constants.Stats;
 import com.android.prism.observers.MonitorObserver;
 
@@ -20,7 +19,6 @@ import java.util.List;
 public class MonitorManager {
     public Handler sMonitorHandler;
     private List<MonitorObserver> monitorObservers = new ArrayList<MonitorObserver>();
-    private int state = 0;
 
     private volatile static MonitorManager monitorManager;
     private MonitorManager (){}
@@ -40,19 +38,13 @@ public class MonitorManager {
         return this;
     }
 
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-        if (this.state == 1 && Stats.MONITOR_START){
+    public void updateObservers() {
+        if (Stats.PERFORMACE_START) {
             notifyAllObservers();
         }
-
     }
 
-    public void attach(MonitorObserver observer){
+    public void register(MonitorObserver observer) {
         monitorObservers.add(observer);
     }
 
