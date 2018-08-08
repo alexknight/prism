@@ -9,16 +9,16 @@ package com.android.prism.bean;
 
 
 public class CpuInfo {
-    private int processRate;
+    private double processRate;
     private int totoalRate;
     private String timestamp;
     private StackInfo stackInfo;
 
-    public int getProcessRate() {
+    public double getProcessRate() {
         return processRate;
     }
 
-    public void setProcessRate(int processRate) {
+    public void setProcessRate(double processRate) {
         this.processRate = processRate;
     }
 

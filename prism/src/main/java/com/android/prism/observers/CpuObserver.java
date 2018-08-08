@@ -31,6 +31,7 @@ public class CpuObserver extends MonitorObserver {
     public void update() {
         CpuInfo cpuInfo = new CpuInfo();
         cpuInfo.setTimestamp(AppUtils.getCurrentTime());
+
         cpuInfo.setProcessRate(CpuUtils.getCpuRate(AppUtils.getInstance().getPid()));
         MonitorResult.cpuInfos.add(cpuInfo);
 

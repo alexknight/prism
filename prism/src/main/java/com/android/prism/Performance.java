@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.android.prism.constants.MonitorType;
 import com.android.prism.constants.Stats;
+import com.android.prism.observers.CpuObserver;
 import com.android.prism.observers.MemObserver;
 import com.android.prism.subjects.MonitorManager;
 import com.android.prism.tasks.MonitorThread;
@@ -38,7 +39,7 @@ public class Performance implements Application.ActivityLifecycleCallbacks{
 
     void start() {
         new MemObserver(monitorManager);
-//        new CpuObserver(monitorManager);
+        new CpuObserver(monitorManager);
         // 性能handleMessage线程
         new MonitorThread("MonitorThread",0).start();
         // 性能sendMessage线程
