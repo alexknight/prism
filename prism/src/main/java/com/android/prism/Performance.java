@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.Toast;
 
 import com.android.prism.bean.CpuInfo;
 import com.android.prism.bean.MemInfo;
@@ -43,8 +42,12 @@ public class Performance implements Application.ActivityLifecycleCallbacks{
     public static Map<String,String> pageMap;
     public Env env;
 
+    // cpu测试数据
     private ArrayList<CpuInfo> cpuInfos = new ArrayList<>();
+    // mem测试数据
     private ArrayList<MemInfo> memInfos = new ArrayList<>();
+    // 启动时间
+    private long bootCost;
 
 
 
@@ -90,7 +93,7 @@ public class Performance implements Application.ActivityLifecycleCallbacks{
                     @Override
                     public void onWindowFocusChanged(boolean hasFocus) {
                         if (hasFocus) {
-                            long bootCost = System.currentTimeMillis()-env.getAppStartTime();
+                            bootCost = System.currentTimeMillis()-env.getAppStartTime();
                             Log.d(TAG, "启动时间: " + bootCost);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                                 view.getViewTreeObserver().removeOnWindowFocusChangeListener(this);
