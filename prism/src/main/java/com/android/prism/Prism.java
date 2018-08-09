@@ -14,26 +14,26 @@ import com.squareup.leakcanary.LeakCanary;
  * @author : Alex(qingge)
  */
 
-public class PrismSDK {
-    private static volatile PrismSDK sPrismSDK;
+public class Prism {
+    private static volatile Prism sPrism;
     private Context context;
     private Performance mPerformance;
 
-    private PrismSDK (Context context){
+    private Prism (Context context){
         this.context = context;
         mPerformance = new Performance(context);
         AppUtils.getInstance().setAppContext(context).setPid(android.os.Process.myPid());
     }
 
-    public static PrismSDK getInstance(Context context) {
-        if (sPrismSDK == null) {
-            synchronized (PrismSDK.class) {
-                if (sPrismSDK == null) {
-                    sPrismSDK = new PrismSDK(context);
+    public static Prism getInstance(Context context) {
+        if (sPrism == null) {
+            synchronized (Prism.class) {
+                if (sPrism == null) {
+                    sPrism = new Prism(context);
                 }
             }
         }
-        return sPrismSDK;
+        return sPrism;
     }
 
 

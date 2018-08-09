@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 /**
- * Project: PrismSDK
+ * Project: Prism
  *
  * @author : Alex(qingge)
  * @date : 2018/8/6 下午6:43

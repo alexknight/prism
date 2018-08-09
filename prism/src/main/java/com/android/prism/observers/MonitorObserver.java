@@ -3,7 +3,7 @@ package com.android.prism.observers;
 import com.android.prism.subjects.MonitorManager;
 
 /**
- * Project: PrismSDK
+ * Project: Prism
  *
  * @author : Alex(qingge)
  * @date : 2018/8/5 下午8:41

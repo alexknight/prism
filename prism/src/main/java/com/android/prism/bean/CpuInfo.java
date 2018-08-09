@@ -1,7 +1,7 @@
 package com.android.prism.bean;
 
 /**
- * Project: PrismSDK
+ * Project: Prism
  *
  * @author : Alex(qingge)
  * @date : 2018/8/6 下午10:31

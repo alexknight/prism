@@ -12,7 +12,7 @@ import com.android.prism.subjects.MonitorManager;
 import com.android.prism.utils.MemUtils;
 
 /**
- * Project: PrismSDK
+ * Project: Prism
  *
  * @author : Alex(qingge)
  * @date : 2018/8/6 下午2:00

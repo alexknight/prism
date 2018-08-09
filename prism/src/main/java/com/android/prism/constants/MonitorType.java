@@ -1,7 +1,7 @@
 package com.android.prism.constants;
 
 /**
- * Project: PrismSDK
+ * Project: Prism
  *
  * @author : Alex(qingge)
  * @date : 2018/8/5 下午9:50

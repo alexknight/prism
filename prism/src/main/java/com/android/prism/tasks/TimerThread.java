@@ -6,7 +6,7 @@ import com.android.prism.constants.Stats;
 import com.android.prism.subjects.MonitorManager;
 
 /**
- * Project: PrismSDK
+ * Project: Prism
  *
  * @author : Alex(qingge)
  * @date : 2018/8/6 下午2:00
