@@ -1,9 +1,8 @@
-package com.android.prism.tasks;
+package com.android.prism.threads;
 
 import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 

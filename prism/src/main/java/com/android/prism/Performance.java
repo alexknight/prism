@@ -17,8 +17,8 @@ import com.android.prism.constants.Stats;
 import com.android.prism.observers.CpuObserver;
 import com.android.prism.observers.MemObserver;
 import com.android.prism.subjects.MonitorManager;
-import com.android.prism.tasks.MonitorThread;
-import com.android.prism.tasks.TimerThread;
+import com.android.prism.threads.MonitorThread;
+import com.android.prism.threads.TimerThread;
 import com.android.prism.utils.AppUtils;
 import com.android.prism.utils.RootUtil;
 
@@ -108,7 +108,7 @@ public class Performance implements Application.ActivityLifecycleCallbacks{
 
     @Override
     public void onActivityStarted(Activity activity) {
-        Stats.PERFORMACE_START = true;
+        Stats.PERFORMACE_START = true; // 将入栈的activity跟原来的对比
     }
 
     @Override
@@ -120,12 +120,12 @@ public class Performance implements Application.ActivityLifecycleCallbacks{
 
     @Override
     public void onActivityPaused(Activity activity) {
-        Stats.PERFORMACE_START = false;
+        Stats.PERFORMACE_START = false; // 将前一个activity入栈
     }
 
     @Override
     public void onActivityStopped(Activity activity) {
-        Stats.PERFORMACE_START = false;
+        Stats.PERFORMACE_START = false; //判断前一个activity是否stop，新activity是否正常启动
     }
 
     @Override
