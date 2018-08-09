@@ -15,6 +15,7 @@ public class Env {
 
     private Env(Builder builder){
         mAppStartTime = builder.mAppStartTime;
+        mActivity = builder.mActivity;
     }
 
     public long getAppStartTime() {

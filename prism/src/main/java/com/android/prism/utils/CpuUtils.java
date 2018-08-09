@@ -1,5 +1,8 @@
 package com.android.prism.utils;
 
+import com.android.prism.Performance;
+import com.android.prism.constants.Stats;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -16,7 +19,7 @@ public class CpuUtils {
 
     public static int getCpuRate(int pid){
         int cpuRateInt = -1;
-        if (!RootUtil.isRooted()){
+        if (!Stats.IS_ROOT){
             return cpuRateInt;
         }
         long mLastCpuTime = 0;//当前手机的CPU总时间

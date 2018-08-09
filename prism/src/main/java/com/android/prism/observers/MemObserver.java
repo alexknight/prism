@@ -2,11 +2,12 @@ package com.android.prism.observers;
 import android.os.Message;
 
 import com.android.prism.bean.MemInfo;
-import com.android.prism.bean.MonitorResult;
 import com.android.prism.constants.MonitorType;
 import com.android.prism.subjects.MonitorManager;
 import com.android.prism.utils.AppUtils;
 import com.android.prism.utils.MemUtils;
+
+import java.util.ArrayList;
 
 
 /**
@@ -19,9 +20,12 @@ import com.android.prism.utils.MemUtils;
 
 public class MemObserver extends MonitorObserver {
 
-    public MemObserver(MonitorManager monitorManager){
+    private ArrayList<MemInfo> memInfos;
+
+    public MemObserver(MonitorManager monitorManager, ArrayList<MemInfo> memInfos){
         this.monitorManager = monitorManager;
         this.monitorManager.register(this);
+        this.memInfos = memInfos;
     }
 
     /**
@@ -33,12 +37,19 @@ public class MemObserver extends MonitorObserver {
         memInfo.setTimestamp(AppUtils.getCurrentTime());
         memInfo.setTotalMemory(MemUtils.getTotalMemory());
         memInfo.setProcessUsedMemory(MemUtils.getUseSize());
-        MonitorResult.memInfos.add(memInfo);
+        memInfos.add(memInfo);
 
         Message msg = Message.obtain();
         msg.what = MonitorType.MONITOR_MSG_TYPE_MEM;
         msg.obj = memInfo;
         monitorManager.sMonitorHandler.sendMessage(msg);
+    }
+
+    /**
+     * 单个测试项上报结果数据，可以不实现
+     */
+    @Override
+    public void report() {
     }
 
 }

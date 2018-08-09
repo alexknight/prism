@@ -13,4 +13,5 @@ import com.android.prism.subjects.MonitorManager;
 public abstract class MonitorObserver {
     protected MonitorManager monitorManager;
     public abstract void update();
+    public abstract void report();
 }

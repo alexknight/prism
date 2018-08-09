@@ -44,6 +44,21 @@ public class MonitorManager {
         }
     }
 
+    /**
+     * 测试项一个一个上报结果
+     */
+    public void orderReport() {
+        if (Stats.PERFORMACE_SINGLE_REPORT) {
+            reportAllObservers();
+        }
+    }
+
+    private void reportAllObservers() {
+        for (MonitorObserver observer : monitorObservers) {
+            observer.report();
+        }
+    }
+
     public void register(MonitorObserver observer) {
         monitorObservers.add(observer);
     }

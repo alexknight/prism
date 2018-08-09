@@ -2,11 +2,12 @@ package com.android.prism.observers;
 import android.os.Message;
 
 import com.android.prism.bean.CpuInfo;
-import com.android.prism.bean.MonitorResult;
 import com.android.prism.constants.MonitorType;
 import com.android.prism.subjects.MonitorManager;
 import com.android.prism.utils.AppUtils;
 import com.android.prism.utils.CpuUtils;
+
+import java.util.ArrayList;
 
 
 /**
@@ -18,10 +19,12 @@ import com.android.prism.utils.CpuUtils;
 
 
 public class CpuObserver extends MonitorObserver {
+    private ArrayList<CpuInfo> cpuInfos;
 
-    public CpuObserver(MonitorManager monitorManager){
+    public CpuObserver(MonitorManager monitorManager, ArrayList<CpuInfo> cpuInfos){
         this.monitorManager = monitorManager;
         this.monitorManager.register(this);
+        this.cpuInfos = cpuInfos;
     }
 
     /**
@@ -34,12 +37,20 @@ public class CpuObserver extends MonitorObserver {
         cpuInfo.setTimestamp(AppUtils.getCurrentTime());
 
         cpuInfo.setProcessRate(CpuUtils.getCpuRate(AppUtils.getInstance().getPid()));
-        MonitorResult.cpuInfos.add(cpuInfo);
+        cpuInfos.add(cpuInfo);
 
         Message msg = Message.obtain();
         msg.obj = cpuInfo;
         msg.what = MonitorType.MONITOR_MSG_TYPE_CPU;
         monitorManager.sMonitorHandler.sendMessage(msg);
+    }
+
+    /**
+     * 上报结果数据
+     */
+    @Override
+    public void report() {
+
     }
 
 }
